@@ -1,0 +1,49 @@
+.hero {
+    background-image: url("./images/biblioteca_cesde.png");
+    background-size: cover;
+    color: white;
+  }
+
+  .hero .container {
+    background-color: rgba(255, 255, 255, 0.2); /* semitransparente */
+    backdrop-filter: blur(0.2rem); /* aplica el blur al fondo */
+    -webkit-backdrop-filter: blur(0.2rem); /* para Safari */
+    padding: 6rem;
+    max-width: 100%;
+    color: black;
+  }
+
+  .hero .container .overlay {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  .section-title {
+    margin-bottom: 40px;
+  }
+
+
+  .icon-box {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    height: 100%;
+  }
+
+  .btn-cesde {
+    background-color: #F24B78;
+    color: white;
+  }
+
+  .btn-cesde:hover {
+    background-color: white;
+    color: #F24B78;
+  }
+
+  .bg-cesde {
+    background-color: #F24B78;
+    color: white;
+  }
+
