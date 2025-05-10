@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'MainFont';
+  src: url('fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf') format('truetype');
+}
+
+body {
+  font-family: 'MainFont', sans-serif;
+}
+
 .hero {
     background-image: url("./images/biblioteca_cesde.png");
     background-size: cover;
@@ -39,18 +48,18 @@
 
   .btn-cesde:hover {
     background-color: white;
-    color: #F24B78;
+    color: #F20574;
   }
 
   .bg-cesde {
-    background-color: #F24B78;
+    background-color: #F20574;
     color: white;
   }
 
 header{
     display: flex;
     height: 70px;
-    background-color:#F24B78;
+    background-color:#F20574;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -83,4 +92,14 @@ a{
 
 .text-body-secondary i{
   font-size: 2rem;
+}
+
+.footer {
+  background-color: darkgrey;
+  width: 100%;
+}
+
+.item-galery {
+  height: 15rem;
+  width: 15rem;
 }
