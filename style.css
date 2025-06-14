@@ -120,3 +120,7 @@ body {
 .card-body ul {
   padding-left: 20px;
 }
+
+.politicas {
+  text-decoration: none;
+}

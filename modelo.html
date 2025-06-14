@@ -1,83 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modelo Base de Datos</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
     <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header>
-        <a href="index.html" class="logo text-white">
-          <img src="images/cesde.tr.png" alt="logo cesde" />
-          <h2>Sistema de Bibliotecas</h2>
-        </a>
-        <nav>
-          <a href="index.html" class="page">Inicio</a>
-          <a href="contacto.html" class="page">Contacto</a>
-          <a href="modelo.html" class="page">Modelo</a>
-          <a href="logica.html" class="page">Logica</a>
-          <a href="perfil.html" class="page">Perfil</a>
-        </nav>
-      </header>
+      <a href="index.html" class="logo text-white">
+        <img src="images/cesde.tr.png" alt="logo cesde" />
+        <h2>Sistema de Bibliotecas</h2>
+      </a>
+      <nav>
+        <a href="index.html" class="page">Inicio</a>
+        <a href="contacto.html" class="page">Contacto</a>
+        <a href="modelo.html" class="page">Modelo</a>
+        <a href="logica.html" class="page">Logica</a>
+        <a href="perfil.html" class="page">Perfil</a>
+      </nav>
+    </header>
 
-      <main>
-        <h2 class="h2 text-center mt-2">Modelo Relacional</h2>
-        <div class="modelo-relacional text-center mt-4 mb-4">
-            <img src="images/proyecto_integrador.png" alt="Modelo Relacional" class="img-fluid w-50" data-bs-toggle="modal" data-bs-target="#modalImagen" style="cursor: zoom-in;">
-        </div>
+    <main>
+      <h2 class="h2 text-center mt-2">Modelo Relacional</h2>
+      <div class="modelo-relacional text-center mt-4 mb-4">
+        <img
+          src="images/proyecto_integrador.png"
+          alt="Modelo Relacional"
+          class="img-fluid w-50"
+          data-bs-toggle="modal"
+          data-bs-target="#modalImagen"
+          style="cursor: zoom-in"
+        />
+      </div>
 
-        <div class="modal fade" id="modalImagen" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-              <div class="modal-content bg-transparent border-0">
-                <div class="modal-body text-center">
-                  <img src="images/proyecto_integrador.png" class="img-fluid rounded">
-                </div>
-              </div>
+      <div class="modal fade" id="modalImagen" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content bg-transparent border-0">
+            <div class="modal-body text-center">
+              <img
+                src="images/proyecto_integrador.png"
+                class="img-fluid rounded"
+              />
             </div>
           </div>
-      </main>
+        </div>
+      </div>
 
-      <div class="footer p-3">
-        <footer
-          class="d-flex flex-wrap justify-content-between align-items-center mt-2 border-top"
-        >
+      <div class="container">
+        <pre>
+              <code >
+                create database biblioteca;
+                use biblioteca;
+
+                create table role(
+                role_id int identity(1,1),
+                name varchar (30),
+                constraint pk_rol_id primary key (role_id),
+                );
+
+                create table notification_type(
+                type_id int identity(1,1),
+                type varchar (20),
+                constraint pk_type_id primary key (type_id),
+                );
+
+                create table loan_type(
+                loan_type_id int identity(1,1),
+                type varchar (20),
+                constraint pk_loan_type_id primary key (loan_type_id),
+                );
+
+
+                create table genre(
+                genre_id int identity(1,1),
+                name varchar (15),
+                constraint pk_genre_id primary key (genre_id),
+                );
+
+                create table category(
+                category_id int identity(1,1),
+                name varchar (100),
+                constraint pk_category_id primary key (category_id),
+                );
+
+                create table country(
+                country_id int identity(1,1),
+                name varchar (30),
+                constraint pk_country_id primary key (country_id),
+                );
+
+                create table editorial(
+                editorial_id int identity(1,1),
+                name varchar (30),
+                country int,
+                constraint pk_editorial_id primary key (editorial_id),
+                constraint fk_country_editorial foreign key (country) references country(country_id)
+                );
+
+                create table author(
+                author_id int identity(1,1),
+                name varchar (30),
+                country int,
+                constraint pk_author_id primary key (author_id),
+                constraint fk_country_author foreign key (country) references country(country_id)
+                );
+
+                create table department(
+                department_id int identity(1,1),
+                name varchar (50),
+                constraint pk_department_id primary key (department_id),
+                );
+
+                create table city(
+                city_id int identity(1,1),
+                name varchar (30),
+                department int,
+                constraint pk_city_id primary key (city_id),
+                constraint fk_department_id foreign key (department) references department(department_id)
+                );
+
+                create table neighborhood(
+                neighborhood_id int identity(1,1),
+                name varchar (30),
+                city int,
+                constraint pk_neighborhood_id primary key (neighborhood_id),
+                constraint fk_city_id foreign key (city) references city(city_id)
+                );
+
+                create table address(
+                address_id int identity(1,1),
+                road_type varchar (15),
+                road_number varchar (5),
+                road_letter varchar (3),
+                second_road_number varchar(3),
+                HouseNumber varchar(3),
+                complement varchar(100),
+                postal_code varchar(6),
+                city int,
+                department int,
+                neighborhood int,
+                constraint pk_address_id primary key (address_id),
+                constraint fk_city_address foreign key (city) references city(city_id),
+                constraint fk_department_address foreign key (department) references department(department_id),
+                constraint fk_neighborhood_address foreign key (neighborhood) references neighborhood(neighborhood_id),
+                );
+
+                create table users(
+                user_dni varchar(15),
+                name varchar (90),
+                last_name varchar(90),
+                phone varchar (15),
+                password varchar(200),
+                email varchar(200),
+                address int,
+                role int,
+                constraint pk_user_dni primary key (user_dni),
+                constraint fk_address_id foreign key (address) references address(address_id),
+                constraint fk_role_id foreign key (role) references role(role_id),
+                );
+
+                create table loan(
+                loan_id int identity(1,1),
+                loan_date date,
+                due_date date,
+                state varchar (30),
+                user_dni varchar(15),
+                loan_type int,
+                constraint pk_loan_id primary key (loan_id),
+                constraint fk_user_dni foreign key (user_dni) references users(user_dni),
+                constraint fk_loan_type_id foreign key (loan_type) references loan_type(loan_type_id),
+                );
+
+                create table notifications(
+                notification_id int identity(1,1),
+                message varchar(900),
+                notification_date date,
+                subject varchar (100),
+                type int,
+                user_dni varchar(15),
+                loan int,
+                constraint pk_notification_id primary key (notification_id),
+                constraint fk_type_notification foreign key (type) references notification_type(type_id),
+                constraint fk_loan_notification foreign key (loan) references loan(loan_id),
+                constraint fk_user_notification foreign key (user_dni) references users(user_dni),
+                );
+
+                create table penalty(
+                penalty_id int identity(1,1),
+                type varchar (30),
+                cost decimal,
+                state varchar (30),
+                user_dni varchar(15),
+                loan int,
+                constraint pk_penalty_id primary key (penalty_id),
+                constraint fk_user_penalty foreign key (user_dni) references users(user_dni),
+                constraint fk_loan_penalty foreign key (loan) references loan(loan_id),
+                );
+
+                create table book(
+                book_id int identity(1,1),
+                title varchar (30),
+                pubication_year int,
+                isbn varchar (30),
+                editorial int,
+                genre int,
+                category int,
+                constraint pk_book_id primary key (book_id),
+                constraint fk_editorial_book foreign key (editorial) references editorial(editorial_id),
+                constraint fk_genre_book foreign key (genre) references genre(genre_id),
+                constraint fk_category foreign key (category) references category(category_id),
+                );
+
+                create table library(
+                library_id int identity(1,1),
+                name varchar (60),
+                email varchar(100),
+                phone varchar(15),
+                Headquarters varchar (60),
+                address int,
+                constraint pk_library_id primary key (library_id),
+                constraint fk_address_library foreign key (address) references address(address_id),
+                );
+
+                create table copy(
+                copy_id int identity(1,1),
+                state varchar (30),
+                book int,
+                library int,
+                constraint pk_copy_id primary key (copy_id),
+                constraint fk_book_copy foreign key (book) references book(book_id),
+                constraint fk_library_copy foreign key (library) references library(library_id),
+                );
+
+                create table copy_loan(
+                copy_loan_id int identity(1,1),
+                due_date date,
+                copy int,
+                loan int,
+                constraint pk_copy_loan_id primary key (copy_loan_id),
+                constraint fk_copy_id foreign key (copy) references copy(copy_id),
+                constraint fk_loan_copy foreign key (loan) references loan(loan_id),
+                );
+
+                create table book_return(
+                book_return_id int identity(1,1),
+                return_date date,
+                book_condition varchar(50),
+                copy_loan int,
+                constraint pk_book_return_loan_id primary key (book_return_id),
+                constraint fk_copy_loan_id foreign key (copy_loan) references copy_loan(copy_loan_id),
+                );
+
+                create table author_book(
+                author_id int,
+                book_id int,
+                constraint pk_author_book_id primary key (author_id,book_id),
+                constraint fk_author_book_author foreign key (author_id) references author(author_id),
+                constraint fk_author_book_book foreign key (book_id) references book(book_id),
+                );
+              </code>
+            </pre>
+      </div>
+    </main>
+
+    <div class="footer p-3">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center mt-2 border-top"
+      >
         <div class="col-md-4 d-flex align-items-center">
           <div class="nombres">
-            <p>
-              Fernando Arias
-            </p>
-            <p>
-              Rafael Sanchez
-            </p>
-            <p>
-              Yuliana Chica
-            </p>
+            <p>Fernando Arias</p>
+            <p>Rafael Sanchez</p>
+            <p>Yuliana Chica</p>
           </div>
         </div>
-          <div class="col-md-4 d-flex align-items-center justify-content-center">
-            
-            <span class="mb-3 mb-md-0 text-body-secondary"
-              >© 2025 Medellín</span
-            >
-          </div>
-          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3">
-              <a class="text-body-secondary" href="https://github.com/ferwinred/sistema-de-bibliotecas/tree/encabezado" aria-label="GitHub"
-                ><i class="bi bi-github" ></i></a>
-            </li>
-          </ul>
-        </footer>
-      </div>
-  
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        <div class="col-md-4 d-flex align-items-center justify-content-center">
+          <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Medellín</span>
+        </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3">
+            <a
+              class="text-body-secondary"
+              href="https://github.com/ferwinred/sistema-de-bibliotecas/tree/encabezado"
+              aria-label="GitHub"
+              ><i class="bi bi-github"></i
+            ></a>
+          </li>
+        </ul>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
